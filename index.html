@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYMENT BY RAFFSTR</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            color: #b8b8b8;
+            font-size: 16px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-card {
+            background: #151515;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: #ff5722;
+        }
+        
+        .payment-icon {
+            width: 50px;
+            height: 50px;
+            background: #ff5722;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .payment-details {
+            flex: 1;
+        }
+        
+        .payment-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #ff5722;
+        }
+        
+        .payment-details p {
+            font-size: 16px;
+            color: #e0e0e0;
+            word-break: break-all;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #b8b8b8;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            background: #151515;
+            color: #fff;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff5722;
+        }
+        
+        .upload-area {
+            border: 2px dashed #2a2a2a;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            transition: border-color 0.3s;
+            background: #151515;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #ff5722;
+        }
+        
+        .upload-area p {
+            color: #b8b8b8;
+            margin-bottom: 15px;
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background: #e64a19;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #ff5722, #ff8a65);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 87, 34, 0.3);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .file-name {
+            margin-top: 10px;
+            color: #ff5722;
+            font-size: 14px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .payment-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PAYMENT BY RAFFSTR</h1>
+            <p>Silakan pilih metode pembayaran dan lengkapi data berikut</p>
+        </div>
+        
+        <div class="payment-methods">
+            <div class="payment-card">
+                <div class="payment-icon">D</div>
+                <div class="payment-details">
+                    <h3>DANA</h3>
+                    <p>083867468118</p>
+                    <p>a/n: Lip</p>
+                </div>
+            </div>
+            
+            <div class="payment-card">
+                <div class="payment-icon">G</div>
+                <div class="payment-details">
+                    <h3>GOPAY</h3>
+                    <p>083893476377</p>
+                    <p>a/n: RAFFSTR</p>
+                </div>
+            </div>
+        </div>
+        
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="phone">Masukkan Nomor Telepon Anda</label>
+                <input type="tel" id="phone" name="phone" placeholder="Contoh: 081234567890" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Upload Bukti Transfer</label>
+                <div class="upload-area" id="uploadArea">
+                    <p>Seret file ke sini atau klik untuk mengunggah</p>
+                    <button type="button" class="upload-btn">Pilih File</button>
+                    <input type="file" id="fileInput" class="hidden" accept="image/*">
+                    <div id="fileName" class="file-name"></div>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Konfirmasi Pembayaran</button>
+        </form>
+        
+        <footer>
+            <p>&copy; 2023 Payment Gateway. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript untuk menangani upload file
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileName = document.getElementById('fileName');
+        
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                fileName.textContent = `File terpilih: ${e.target.files[0].name}`;
+            } else {
+                fileName.textContent = '';
+            }
+        });
+        
+        // Mencegah default form submission
+        document.getElementById('paymentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih! Pembayaran Anda sedang diproses.');
+            // Di sini biasanya akan ada kode untuk mengirim data ke server
+        });
+        
+        // Efek drag and drop untuk area upload
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ff5722';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#2a2a2a';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#2a2a2a';
+            
+            if (e.dataTransfer.files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                fileName.textContent = `File terpilih: ${e.dataTransfer.files[0].name}`;
+            }
+        });
+    </script>
+</body>
+</html>
